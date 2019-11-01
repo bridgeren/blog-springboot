@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
@@ -87,17 +87,47 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.0.7</version>
+                <configuration>
+                    <url> jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=GMT%2B8</url>
+                    <user>Blog</user>
+                    <password>Mall@123</password>
+
+                    <placeholders>
+                        <keyABC>valueXYZ</keyABC>
+                        <otherplaceholder>value123</otherplaceholder>
+                    </placeholders>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <plugin>
+            <plugin><!--单元测试-->
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            **/*IntegrationTest
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
+                <!--集成测试-->
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
+                <configuration>
+                    <includes>
+                        <include>
+                            **/*IntegrationTest
+                        </include>
+                    </includes>
+                </configuration>
             </plugin>
 
         </plugins>
