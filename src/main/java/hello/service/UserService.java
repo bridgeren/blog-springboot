@@ -51,4 +51,7 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public User getUserById(Integer userId) {
+        return  this.userMapper.getUserById(userId);
+    }
 }
