@@ -48,7 +48,7 @@ public class AuthController {
             return LoginResult.failure("用户未登陆");
 
         } else {
-            return LoginResult.success("", loggedInUser,true);
+            return LoginResult.success("ok", loggedInUser,true);
         }
     }
 

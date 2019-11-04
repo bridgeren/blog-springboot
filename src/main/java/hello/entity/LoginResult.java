@@ -10,13 +10,13 @@ public class LoginResult extends Result<User>{
 
 
      public static LoginResult success(String msg,User user,boolean isLogin){
-        return  new LoginResult("ok",msg,null,isLogin);
+        return  new LoginResult("ok",msg,user,isLogin);
     }
     public static LoginResult success(String msg,boolean isLogin){
         return  success(msg,null,isLogin);
     }
     public static LoginResult success(String msg,User user){
-        return  success("ok",user);
+        return  success(msg,user,true);
     }
 
     public static LoginResult failure(String message){
