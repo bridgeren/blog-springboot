@@ -5,11 +5,11 @@ package hello.entity;
  *
  * @Date 2019/10/26 17:03
  */
-public abstract class  Result <T>{
+public abstract class Result<T> {
     String status;
     String msg;
-   /* boolean isLogin;*/
-     T data;
+    /* boolean isLogin;*/
+    T data;
    /* public static Result success(String message,User user){
         return  new Result("ok",message,true,user);
     }

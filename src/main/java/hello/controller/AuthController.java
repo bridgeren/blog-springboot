@@ -41,14 +41,14 @@ public class AuthController {
     @RequestMapping("/auth")
     @ResponseBody
     public Object auth() {
-       // String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        // String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User loggedInUser = userService.getUserByUsername(authentication==null?null:authentication.getName());
+        User loggedInUser = userService.getUserByUsername(authentication == null ? null : authentication.getName());
         if (loggedInUser == null) {
             return LoginResult.failure("用户未登陆");
 
         } else {
-            return LoginResult.success("ok", loggedInUser,true);
+            return LoginResult.success("ok", loggedInUser, true);
         }
     }
 
@@ -137,7 +137,7 @@ public class AuthController {
         } else {
             SecurityContextHolder.clearContext();
 
-            return new LoginResult("ok", "注销成功",null,false);
+            return new LoginResult("ok", "注销成功", null, false);
         }
 
     }

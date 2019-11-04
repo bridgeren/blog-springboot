@@ -24,21 +24,21 @@ public class BlogServiceTest {
     BlogService blogService;
 
 
-
     @Test
     public void getBlogsFromDb() {
         blogService.getBlogs(1, 10, null);
 
         verify(blogDao).getBlogs(1, 10, null);
     }
+
     @Test
-     public void  returnFailureWhenExceptionThrown(){
-        when(blogDao.getBlogs(anyInt(),anyInt(),any())).thenThrow(new RuntimeException());
+    public void returnFailureWhenExceptionThrown() {
+        when(blogDao.getBlogs(anyInt(), anyInt(), any())).thenThrow(new RuntimeException());
 
-        Result result=blogService.getBlogs(1,10,null);
+        Result result = blogService.getBlogs(1, 10, null);
 
-        Assertions.assertEquals("fail",result.getStatus());
-        Assertions.assertEquals("系统异常",result.getMsg());
+        Assertions.assertEquals("fail", result.getStatus());
+        Assertions.assertEquals("系统异常", result.getMsg());
     }
 
 

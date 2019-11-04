@@ -18,22 +18,23 @@ import java.util.Map;
 @Service
 public class BlogDao {
     private final SqlSession sqlSession;
+
     @Inject
     public BlogDao(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
 
     public List<Blog> getBlogs(Integer page, Integer pageSize, Integer userId) {
-        Map<String,Object>  parameters=new HashMap<>();
-        parameters.put("user_id",userId);
-        parameters.put("offset",(page-1)*pageSize);
-        parameters.put("limit",pageSize);
-        return sqlSession.selectList("selectBlog",pageSize);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("user_id", userId);
+        parameters.put("offset", (page - 1) * pageSize);
+        parameters.put("limit", pageSize);
+        return sqlSession.selectList("selectBlog", parameters);
 
     }
 
     public int count(Integer userId) {
-        return sqlSession.selectOne("countBlog",userId);
+        return sqlSession.selectOne("countBlog", userId);
     }
 
 

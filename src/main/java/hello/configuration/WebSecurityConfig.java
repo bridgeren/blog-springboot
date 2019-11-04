@@ -17,21 +17,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
-    protected  void configure(HttpSecurity http)throws Exception{
-                http.csrf().disable();//关闭这个功能
-                http.authorizeRequests()
-                        .antMatchers("/","/home/**")
-                        .permitAll();
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();//关闭这个功能
+        http.authorizeRequests()
+                .antMatchers("/", "/home/**")
+                .permitAll();
     }
 
     @Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception{
+    public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
+
     // 加密服务
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-        return  new BCryptPasswordEncoder();
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

@@ -18,7 +18,7 @@ public class Blog {
     private String content;
     private Instant createdAt;
     private Instant updatedAt;
-    private  User user;
+    private User user;
 
     public User getUser() {
         return user;

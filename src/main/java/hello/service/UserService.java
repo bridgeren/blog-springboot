@@ -20,15 +20,15 @@ public class UserService implements UserDetailsService {
     private UserMapper userMapper;
 
     @Inject
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder,UserMapper userMapper) {
+    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userMapper=userMapper;
+        this.userMapper = userMapper;
 
     }
 
 
     public void save(String username, String passwords) {
-        userMapper.save(username,bCryptPasswordEncoder.encode(passwords));
+        userMapper.save(username, bCryptPasswordEncoder.encode(passwords));
 
     }
 
@@ -40,11 +40,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user=getUserByUsername(username);
-        if (user==null) {
+        User user = getUserByUsername(username);
+        if (user == null) {
             throw new UsernameNotFoundException(username + "不存在！");
         }
-
 
 
         return new org.springframework.security.core.userdetails.User(username, user.getEncryptedPassword(), Collections.emptyList());
@@ -52,6 +51,6 @@ public class UserService implements UserDetailsService {
 
 
     public User getUserById(Integer userId) {
-        return  this.userMapper.getUserById(userId);
+        return this.userMapper.getUserById(userId);
     }
 }

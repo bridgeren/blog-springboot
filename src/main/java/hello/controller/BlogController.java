@@ -22,15 +22,15 @@ public class BlogController {
     public BlogController(BlogService blogService) {
         this.blogService = blogService;
     }
+
     @GetMapping("/blog")
     @ResponseBody
-    public Result getBlogs(@RequestParam("page") Integer page,@RequestParam(value = "userId",required = false) Integer userId){
-        if(page==null||page<0){
-           page=1;
+    public Result getBlogs(@RequestParam("page") Integer page, @RequestParam(value = "userId", required = false) Integer userId) {
+        if (page == null || page < 0) {
+            page = 1;
         }
-        return  blogService.getBlogs(page,10,userId);
+        return blogService.getBlogs(page, 10, userId);
     }
-
 
 
 }
